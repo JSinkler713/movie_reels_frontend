@@ -22,7 +22,7 @@ const NavBar = ({ currentUser, logout }) => {
         <NavLink className="nav-link" exact to="/profile">Profile</NavLink>
       </li>
       <li className="nav-item">
-        <NavLink className="nav-link" to="/contacts">Contacts</NavLink>
+        <NavLink className="nav-link" to="/reels">Reels</NavLink>
       </li>
       <li className="nav-item">
         <span className="nav-link" style={{cursor: 'pointer'}} onClick={logout}>Logout</span>
