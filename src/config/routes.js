@@ -4,7 +4,7 @@ import Home from '../components/Home/Home';
 import Login from '../components/Auth/Login';
 import Register from '../components/Auth/Register';
 import ProfileContainer from '../containers/ProfileContainer';
-import ContactsContainer from '../containers/ContactsContainer';
+import ReelsContainer from '../containers/ReelsContainer';
 
 export default withRouter(({ setCurrentUser, currentUser, history }) => {
   const PrivateRoute = ({component: Component, ...rest}) => (
@@ -21,7 +21,7 @@ export default withRouter(({ setCurrentUser, currentUser, history }) => {
       <Route path='/login' render={() => <Login history={history} setCurrentUser={setCurrentUser} />} />
       <Route path='/register' component={Register} />
       <PrivateRoute path='/profile' component={ProfileContainer} />
-      <PrivateRoute path='/contacts' component={ContactsContainer} />
+      <PrivateRoute path='/contacts' component={ReelsContainer} />
     </Switch>
   );  
 });
