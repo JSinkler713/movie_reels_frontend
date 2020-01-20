@@ -29,10 +29,9 @@ class Login extends Component {
       .then(res=> res.json())
       .then(data=> {
         console.log("Success", data);
-        this.props.setCurrentUser(data.signedJwt);
-
+        this.props.setCurrentUser(data);
        // sends user to profile page
-        this.props.history.push('/profile');
+        this.props.history.push('/reels');
       })
       .catch(err => {
         this.setState({error: err.message })

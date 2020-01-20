@@ -7,21 +7,28 @@ import './App.css';
 
 class App extends Component {
   state = {
-    currentUser: localStorage.getItem('uid')
+    currentUser: localStorage.getItem('uid'),
+    userId: ''
   };
 
-  setCurrentUser = (token) => {
+  setCurrentUser = (data) => {
     // set user token
-    this.setState({ currentUser: token })
-    localStorage.setItem('uid', token);
+    // if pass in data can set token to data.signedJwt
+    //
+    //
+    console.log("in app this is data passed up", data)
+    this.setState({ currentUser: data.signedJwt })
+    this.setState({ userId: data.id })
+    localStorage.setItem('uid', data.signedJwt);
   };
-
+  
+  
   logout = () => {
     // handle logout
     localStorage.removeItem('uid');
 
     this.setState({currentUser: null});
-
+    this.setState({userId: ''});
     this.props.history.push('/login')
 
   };
@@ -31,7 +38,7 @@ class App extends Component {
       <>
         <NavBar currentUser={this.state.currentUser} logout={this.logout} />
         <div className="container">
-          <Routes currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} />
+          <Routes currentUser={this.state.currentUser} userId={this.state.userId}  setCurrentUser={this.setCurrentUser} />
         </div>
       </>
     );
