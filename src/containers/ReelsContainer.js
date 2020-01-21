@@ -7,7 +7,8 @@ class Reels extends Component {
   state = { 
     userId: this.props.userId,
     newReelTitle: '',
-    arrayOfReels: []
+    arrayOfReels: [],
+    moviesOfReelSelected: []
   }
   
   handleChange = (event) => {
@@ -16,6 +17,27 @@ class Reels extends Component {
     });
   };
   
+  fetchMovies = (reel_id) => {
+    console.log(`fetching all movies with reel id ${reel_id}`)
+    console.log("if this all works then I need to write my fetch request")
+    fetch(`${API_URL}/reels/${reel_id}/movies`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res=> res.json())
+      .then(data=> {
+        console.log("Success we got the movie data", data);
+        this.setState({moviesOfReelSelected: (data)})
+       // sends user to profile page
+       // this.props.history.push('/reels');
+      })
+      .catch(err => {
+        this.setState({error: err.message })
+      }); 
+  }
+
   makeReel = (event) => {
     event.preventDefault()
     console.log(event.target.value)
@@ -78,7 +100,7 @@ class Reels extends Component {
   render() {
     return (
       <div>
-        {this.state.arrayOfReels.map((reel, i) =><ReelCard key={i} reel_id={reel.Reel_id} reelTitle={reel.Reel} />)}
+        {this.state.arrayOfReels.map((reel, i) =><ReelCard key={i} reel_id={reel.Reel_id} reelTitle={reel.Reel} fetchMovies={this.fetchMovies} movies={this.state.moviesOfReelSelected} />)}
         <section id="newReel" className="col-md-6 offset-md-3">
           <h2 className="mb-4">New Reel</h2>
           <form onSubmit={this.handleSubmit}>

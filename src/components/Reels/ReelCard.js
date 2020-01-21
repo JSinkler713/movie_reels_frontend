@@ -9,17 +9,17 @@ class ReelCard extends Component {
     movies: []
   }
   
-  fetchMovies = (event) => {
+  getMovies = (event) => {
     event.preventDefault()
     console.log(`fetching all movies with reel id ${this.props.reel_id}`)
-    
+    this.props.fetchMovies(this.props.reel_id)
   }
-
+  
   render() {
     return (
       <div>
         { this.props.reelTitle }
-        <button type="Submit" onClick={this.fetchMovies}>Check out Reel</button>
+        <button type="Submit" onClick={this.getMovies}>Check out Reel</button>
       </div>
     )
   }
