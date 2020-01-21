@@ -5,8 +5,9 @@ import Login from '../components/Auth/Login';
 import Register from '../components/Auth/Register';
 import ProfileContainer from '../containers/ProfileContainer';
 import ReelsContainer from '../containers/ReelsContainer';
+import Reel from '../components/Reels/Reel';
 
-export default withRouter(({ setCurrentUser, userId, currentUser, history }) => {
+export default withRouter(({ setCurrentUser, userId, reelId, moviesOfReelSelected, fetchMovies, currentUser, history }) => {
   const PrivateRoute = ({component: Component, ...rest}) => (
     <Route {...rest} render={(props) => (
       currentUser
@@ -23,7 +24,8 @@ export default withRouter(({ setCurrentUser, userId, currentUser, history }) => 
       <Route path='/login' render={() => <Login history={history} setCurrentUser={setCurrentUser} />} />
       <Route path='/register' component={Register} />
       <PrivateRoute path='/profile' component={ProfileContainer} />
-      <PrivateRoute path='/reels' component={ReelsContainer}  userId={userId}/>
+      <PrivateRoute exact path='/reels/:id' component={Reel} reelId={reelId} fetchMovies={fetchMovies} movies={moviesOfReelSelected} userId={userId}/>
+      <PrivateRoute exact path='/reels' component={ReelsContainer}  userId={userId} fetchMovies={fetchMovies}/>
     </Switch>
   );  
 });

@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import Reel from '../components/Reels/Reel' 
 import ReelCard from '../components/Reels/ReelCard'
 import { API_URL } from '../constants/constants';
+import { Switch, Route } from 'react-router-dom';
 
 class Reels extends Component {
   state = { 
     userId: this.props.userId,
     newReelTitle: '',
     arrayOfReels: [],
-    moviesOfReelSelected: []
+    moviesOfReelSelected: ''
   }
   
   handleChange = (event) => {
@@ -16,7 +17,7 @@ class Reels extends Component {
       [event.target.name]: event.target.value,
     });
   };
-  
+  /* 
   fetchMovies = (reel_id) => {
     console.log(`fetching all movies with reel id ${reel_id}`)
     console.log("if this all works then I need to write my fetch request")
@@ -37,7 +38,7 @@ class Reels extends Component {
         this.setState({error: err.message })
       }); 
   }
-
+  */
   makeReel = (event) => {
     event.preventDefault()
     console.log(event.target.value)
@@ -97,10 +98,11 @@ class Reels extends Component {
   }
 
 
+       // { this.props.match.params.id ? 'Hello!' : 'LOL' }
   render() {
     return (
       <div>
-        {this.state.arrayOfReels.map((reel, i) =><ReelCard key={i} reel_id={reel.Reel_id} reelTitle={reel.Reel} fetchMovies={this.fetchMovies} movies={this.state.moviesOfReelSelected} />)}
+        {this.state.arrayOfReels.map((reel, i) =><ReelCard key={i} reel_id={reel.Reel_id} reelTitle={reel.Reel} fetchMovies={this.props.fetchMovies} movies={this.state.moviesOfReelSelected} />)}
         <section id="newReel" className="col-md-6 offset-md-3">
           <h2 className="mb-4">New Reel</h2>
           <form onSubmit={this.handleSubmit}>

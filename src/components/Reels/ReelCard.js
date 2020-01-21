@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom'
 
 //when using a functional component we need to manually pass down the props to that component
 
@@ -9,17 +9,14 @@ class ReelCard extends Component {
     movies: []
   }
   
-  getMovies = (event) => {
-    event.preventDefault()
-    console.log(`fetching all movies with reel id ${this.props.reel_id}`)
-    this.props.fetchMovies(this.props.reel_id)
-  }
   
+       // <button type="Submit" onClick={this.getMovies}>Check out Reel</button>
   render() {
     return (
       <div>
-        { this.props.reelTitle }
-        <button type="Submit" onClick={this.getMovies}>Check out Reel</button>
+        <Link onClick={this.props.fetchMovies} to={`/reels/${this.props.reel_id}`}>
+          { this.props.reelTitle } 
+        </Link><br/>
       </div>
     )
   }
