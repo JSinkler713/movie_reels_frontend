@@ -95,6 +95,7 @@ class Reels extends Component {
   render() {
     return (
       <div>
+        <h3> {this.props.userId} 's MovieReels</h3>
         {this.state.arrayOfReels.map((reel, i) =><ReelCard key={i} reel_id={reel.Reel_id} reelTitle={reel.Reel} fetchMovies={this.props.fetchMovies} movies={this.state.moviesOfReelSelected} />)}
         <section>
           <h2>New Reel</h2>

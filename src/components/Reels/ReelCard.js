@@ -8,9 +8,6 @@ class ReelCard extends Component {
   state = {
     movies: []
   }
-  
-  
-       // <button type="Submit" onClick={this.getMovies}>Check out Reel</button>
   render() {
     return (
       <div>

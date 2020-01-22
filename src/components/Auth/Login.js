@@ -17,7 +17,6 @@ class Login extends Component {
   handleSubmit = (event) => {
     // handle submit here
     event.preventDefault();
-
     const user = this.state
     fetch(`${API_URL}/login`, {
       method: "POST",
@@ -30,12 +29,12 @@ class Login extends Component {
       .then(data=> {
         console.log("Success", data);
         this.props.setCurrentUser(data);
-       // sends user to profile page
+       // sends user to reels page
         this.props.history.push('/reels');
       })
       .catch(err => {
         this.setState({error: err.message })
-      }); 
+      });     
 
   };
 

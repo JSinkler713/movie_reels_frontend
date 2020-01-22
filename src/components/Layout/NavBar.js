@@ -31,20 +31,16 @@ const NavBar = ({ currentUser, logout }) => {
   );  
 
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-5">
-      <div className="container">
-        <NavLink className="navbar-brand" to="/">Auth API</NavLink>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div className="collapse navbar-collapse" id="navbarsExample04">
-          <ul className="navbar-nav ml-auto">
+      <div className="app-container">
+        <div className='title-container'>
+          <h1 className="title">MOVIE_REELS</h1>
+        </div>
+        <div className="links-container">
+            <ul className="links">
             { currentUser ? authLinks : links }
-          </ul>
+            </ul>
         </div>
       </div>
-    </nav>
   );  
 };
 

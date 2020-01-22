@@ -1,6 +1,4 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
 .App-logo {
   height: 40vmin;
@@ -22,6 +20,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  font-family: 'Josefin Sans', cursive;
 }
 
 .App-link {
@@ -42,6 +41,7 @@
   display: inline;
   margin: 5px;
   justify: right;
+  font-family: 'Josefin Sans', cursive;
 }
 
 .myMoviesContainer {
@@ -54,4 +54,35 @@
   width: 28%;
   height: 50%;
   padding: 2%;
+}
+.home-page-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10vw 0 10vw;
+  margin: 3vw;
+  font-family: 'Josefin Sans', cursive;
+  font-size: 2em;
+}
+.links-container {
+  grid-column-start: col-start 2;
+  display: flex;
+}
+.title-container {
+  grid-column-start: col-start 1;
+  font-family: 'Josefin Sans', cursive;
+  font-size: 2em;
+  text-align: center;
+  padding-top: 10px;
+  display: flex;
+  flex-align: center;
+}
+.app-container {
+  font-family: 'Josefin Sans', cursive;
+  border: 2px gray solid;
+  margin-top: 3px;
+  display: grid;
+  grid-template-columns: 25%;
+}
+.title {
+  margin: 0;
 }
