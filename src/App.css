@@ -82,7 +82,12 @@
   margin-top: 3px;
   display: grid;
   grid-template-columns: 25%;
+  background: rgb(246, 246, 246);
 }
 .title {
-  margin: 0;
+ margin: 0;
+}
+.reel-image {
+  width: 24%;
+  height: 100%;
 }
