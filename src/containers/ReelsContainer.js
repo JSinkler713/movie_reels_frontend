@@ -91,26 +91,19 @@ class Reels extends Component {
       .catch(err => {
         this.setState({error: err.message })
       }); 
-
-    //make a function getUsersReels to search for all reels and movies associated with a user
-    // this.getUsersReels('/'+userId+'/reels')
-    // fetch all the reels and the movies in each reel and store them in the array of Reels
   }
-
-
-       // { this.props.match.params.id ? 'Hello!' : 'LOL' }
   render() {
     return (
       <div>
         {this.state.arrayOfReels.map((reel, i) =><ReelCard key={i} reel_id={reel.Reel_id} reelTitle={reel.Reel} fetchMovies={this.props.fetchMovies} movies={this.state.moviesOfReelSelected} />)}
-        <section id="newReel" className="col-md-6 offset-md-3">
-          <h2 className="mb-4">New Reel</h2>
+        <section>
+          <h2>New Reel</h2>
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
               <label htmlFor="email">Reel Name</label>
-              <input type="text" id="newReel" name="newReelTitle" value={this.state.newReelTitle}  onChange={this.handleChange} className="form-control form-control-lg" placeholder="Everything Hobbit"/>
+              <input type="text" id="newReel" name="newReelTitle" value={this.state.newReelTitle}  onChange={this.handleChange} placeholder="Everything Hobbit"/>
             </div>
-            <button type="Submit" onClick={this.makeReel} className="btn btn-primary float-right">Add Reel</button>
+            <button type="Submit" onClick={this.makeReel}>Add Reel</button>
           </form>
         </section>
           

@@ -37,5 +37,10 @@
   }
 }
 
-
+.nav-item , .nav-link {
+  list-style-type: none;
+  display: inline;
+  margin: 5px;
+  justify: right;
+}
 
