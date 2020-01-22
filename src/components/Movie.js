@@ -42,12 +42,12 @@ class Movie extends Component {
       .catch(err => {
         this.setState({error: err.message })
       });
-    this.props.searchOff()  
+    this.props.searchOff()
   }
-
+    
 render() {
     return (
-      <div className='movie'>
+      <div className='myMovies'>
         <h3>Title:{this.props.title} </h3>
         <p>{this.props.year}</p>
         <img src={this.props.imgSrc} alt="poster" />

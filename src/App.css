@@ -44,3 +44,14 @@
   justify: right;
 }
 
+.myMoviesContainer {
+  display:flex;
+  flex-wrap: wrap;
+}
+.myMovies {
+  display: flex;
+  flex-direction: column;
+  width: 28%;
+  height: 50%;
+  padding: 2%;
+}

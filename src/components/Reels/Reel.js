@@ -72,7 +72,7 @@ class Reel extends Component {
           value={this.state.inputText}
         />
         <button onClick={this.handleSearch}>click here</button>
-        <div className="movieContainer">
+        <div className="myMoviesContainer">
            {
            this.state.searchedMovies.length === 0
            ? "loading..."
@@ -83,11 +83,14 @@ class Reel extends Component {
         )
       } else {
         let arrayOfMovies= this.state.movies.map((movie, i)=> {
-          return <div className='movie'> {movie.Movie} </div>
+          return <div className='myMovies'>
+            <h3>Title:{movie.Movie}</h3>
+            <img src={movie.Poster} alt='incorrect image' />
+            </div>
         })  
         return (
           <div>
-            <div>
+            <div className='myMoviesContainer'>
         {arrayOfMovies}
         Hey we are now looking at a specific reel
             </div>

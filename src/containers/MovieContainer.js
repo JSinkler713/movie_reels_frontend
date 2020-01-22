@@ -14,6 +14,7 @@ class MovieContainer extends Component {
         movie={movie}
           reel_id={this.props.reel_id}
           searchOff={this.props.searchOff}
+          className='myMovies'
           />
       })  
     )   
