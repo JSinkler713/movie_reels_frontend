@@ -61,11 +61,6 @@ class Reels extends Component {
   }
 
   componentDidMount() {
-    console.log("running componenet didmount")
-    console.log("state.userId")
-    console.log(this.state.userId)
-    console.log("props.userId")
-    console.log(this.props.userId)
     let userId = this.state.userId
     fetch(`${API_URL}/users/${userId}/reels`, {
       method: "GET",
@@ -77,8 +72,6 @@ class Reels extends Component {
       .then(data=> {
         console.log("Success we got the data", data);
         this.setState({arrayOfReels: (data)})
-       // sends user to profile page
-       // this.props.history.push('/reels');
       })
       .catch(err => {
         this.setState({error: err.message })
@@ -107,7 +100,12 @@ class Reels extends Component {
           </div>
         </div>
         <div className="my-reels-container">
-        {this.state.arrayOfReels.map((reel, i) =><ReelCard key={i} reel_id={reel.Reel_id} deleteReel={this.deleteReel} reelTitle={reel.Reel} fetchMovies={this.props.fetchMovies} movies={this.state.moviesOfReelSelected} />)}
+        {this.state.arrayOfReels.map((reel, i) =><ReelCard key={i}
+          reel_id={reel.Reel_id}
+          deleteReel={this.deleteReel}
+          reelTitle={reel.Reel}
+          fetchMovies={this.props.fetchMovies}
+          movies={this.state.moviesOfReelSelected} />)}
         </div>
           
       </div>

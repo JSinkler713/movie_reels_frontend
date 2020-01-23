@@ -25,11 +25,6 @@ class App extends Component {
   }
 
   setCurrentUser = (data) => {
-    // set user token
-    // if pass in data can set token to data.signedJwt
-    //
-    //
-    console.log("in app this is data passed up", data)
     this.setState({ currentUser: data.signedJwt })
     this.setState({ userId: data.id })
     localStorage.setItem('uid', data.signedJwt);
@@ -39,7 +34,6 @@ class App extends Component {
   logout = () => {
     // handle logout
     localStorage.removeItem('uid');
-
     this.setState({currentUser: null});
     this.setState({userId: ''});
     this.props.history.push('/login')
@@ -50,7 +44,6 @@ class App extends Component {
     console.log(this.state.reel_id)
     console.log(`fetching all movies with reel id ${reel_id}`)
     this.setState({ reel_id: reel_id })  
-    console.log("if this all works then I need to write my fetch request")
     fetch(`${API_URL}/reels/${reel_id}/movies`, {
       method: "GET",
       headers: {
@@ -59,10 +52,7 @@ class App extends Component {
     })
       .then(res=> res.json())
       .then(data=> {
-        console.log("Success we got the movie data", data);
         this.setState({moviesOfReelSelected: (data)})
-       // sends user to profile page
-       // this.props.history.push('/reels');
       })
       .catch(err => {
         this.setState({error: err.message })

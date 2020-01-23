@@ -41,6 +41,8 @@ class ReelCard extends Component {
         <Link onClick={this.props.fetchMovies} to={`/reels/${this.props.reel_id}`}>
           { this.props.reelTitle } 
         </Link><br/>
+        <div className='poster-standin'>
+        </div>
         <button className='delete-reel-button' onClick={this.deleteReel}>Delete Reel </button>
       </div>
     )} else {
