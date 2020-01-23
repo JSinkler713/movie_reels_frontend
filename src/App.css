@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url("https://fonts.googleapis.com/css?family=Josefin+Slab|Open+Sans|Roboto&display=swap");
+
 
 .App-logo {
   height: 40vmin;
@@ -9,6 +11,13 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+a {
+  text-decoration: none;
+}
+a:visited {
+  color: black;
 }
 
 .App-header {
@@ -43,10 +52,19 @@
   justify: right;
   font-family: 'Josefin Sans', cursive;
 }
-
+.reel-name-header {
+  font-family: 'Josefin Slab', serif;
+  font-size: 3rem;
+  font-weight: 800;
+}
 .myMoviesContainer {
   display:flex;
   flex-wrap: wrap;
+}
+.my-reels-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-align: space-between;
 }
 .myMovies {
   display: flex;
@@ -67,6 +85,11 @@
   grid-column-start: col-start 2;
   display: flex;
 }
+.nav-item {
+  font-size: 20px;
+  text-decoration: none;
+  padding-top: 40px;
+}
 .title-container {
   grid-column-start: col-start 1;
   font-family: 'Josefin Sans', cursive;
@@ -75,6 +98,9 @@
   padding-top: 10px;
   display: flex;
   flex-align: center;
+}
+.title {
+  text-shadow: 2px 3px darkslategrey;
 }
 .app-container {
   font-family: 'Josefin Sans', cursive;
@@ -88,6 +114,43 @@
  margin: 0;
 }
 .reel-image {
-  width: 24%;
-  height: 100%;
+  width: 50%;
+  height: 75%;
+}
+.new-reel-form {
+  background-image: url("./clapperboard.png");
+  background-size: cover;
+  width: 230px;
+  height: 200px;
+  display:flex;
+  flex-direction: column;
+  
+}
+.inner-new-reel-form {
+  font-family: 'Josefin Sans', cursive;
+  margin-top: 80px;
+  margin-left: 10px;
+}
+.reel-card {
+  display: flex;
+  flex-direction: column;
+  width: 28%;
+  height: 50%; 
+  padding: 2%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+}
+.top-of-reels {
+  display: flex;
+  justify-content: space-around;
+  
+}
+.top-of-reels-info {
+  width: 75%;
+  font-family: 'Josefin Sans';
+  font-weight: 500;
+  font-size: 1.5rem;
+
 }

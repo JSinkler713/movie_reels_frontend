@@ -6,6 +6,7 @@ class Reel extends Component {
   state = { 
     movies: '', 
     reel_id:'',
+    reelName:'',
     inputText: '',
     searchedMovies: '',
     addMovie: false
@@ -45,6 +46,7 @@ class Reel extends Component {
       .then(data=> {
         console.log("Success we got the movie data", data);
         this.setState({movies: (data)})
+        this.setState({reelName: (data[0].Reel)})
        // sends user to profile page
        // this.props.history.push('/reels');
       })
@@ -90,11 +92,11 @@ class Reel extends Component {
         })  
         return (
           <div>
+            <h3 className='reel-name-header'> {this.state.reelName} Reel</h3>
+            <button className='button-search-movies' onClick={this.searchAvailable}>Add new movies!</button>
             <div className='myMoviesContainer'>
         {arrayOfMovies}
-        Hey we are now looking at a specific reel
             </div>
-            <button onClick={this.searchAvailable}>Add new movies!</button>
           </div>
       );
     }

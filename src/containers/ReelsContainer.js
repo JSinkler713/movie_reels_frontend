@@ -17,28 +17,7 @@ class Reels extends Component {
       [event.target.name]: event.target.value,
     });
   };
-  /* 
-  fetchMovies = (reel_id) => {
-    console.log(`fetching all movies with reel id ${reel_id}`)
-    console.log("if this all works then I need to write my fetch request")
-    fetch(`${API_URL}/reels/${reel_id}/movies`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res=> res.json())
-      .then(data=> {
-        console.log("Success we got the movie data", data);
-        this.setState({moviesOfReelSelected: (data)})
-       // sends user to profile page
-       // this.props.history.push('/reels');
-      })
-      .catch(err => {
-        this.setState({error: err.message })
-      }); 
-  }
-  */
+  
   makeReel = (event) => {
     event.preventDefault()
     console.log(event.target.value)
@@ -96,8 +75,9 @@ class Reels extends Component {
     return (
       <div>
         <h3> {this.props.userId} 's MovieReels</h3>
-        {this.state.arrayOfReels.map((reel, i) =><ReelCard key={i} reel_id={reel.Reel_id} reelTitle={reel.Reel} fetchMovies={this.props.fetchMovies} movies={this.state.moviesOfReelSelected} />)}
-        <section>
+        <div className='top-of-reels'>
+        <section className="new-reel-form">
+          <div className='inner-new-reel-form'>
           <h2>New Reel</h2>
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
@@ -106,7 +86,16 @@ class Reels extends Component {
             </div>
             <button type="Submit" onClick={this.makeReel}>Add Reel</button>
           </form>
+          </div>
         </section>
+          <div className='top-of-reels-info'>
+            <p>Make a new reel on your left. If you want to browse one of your already created reels, just click the reel title, above it's poster. Make sure to contribute by making new Reels of Movies that you think should belongtogether. We count on your contributoin to make Movie_Reels great!
+            </p>
+          </div>
+        </div>
+        <div className="my-reels-container">
+        {this.state.arrayOfReels.map((reel, i) =><ReelCard key={i} reel_id={reel.Reel_id} reelTitle={reel.Reel} fetchMovies={this.props.fetchMovies} movies={this.state.moviesOfReelSelected} />)}
+        </div>
           
       </div>
     );  
