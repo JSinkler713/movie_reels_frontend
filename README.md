@@ -1,68 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Welcome to Movie_Reels
+    Movie_Reel is a site dedicated to the movies you love. When you register as a Movie_Reels user and Login you will have access to start making Reels of your favorite movies. Think of a 'Reel' as you would a 'playlist'. A 'playlist of songs' is a 'Reel of movies'. This project was created using React on the frontend, connecting to an express SQLite3 backend.
+    By making Reels you will not only have a place to save your favorite movies, and make awesome compilations, but also a way to share movies you love with others. Users will have the ability to "Search for reels like ____.". Users enter a movie they love, and then Movie_Reels find Reels that user may like based on the movie.
+    The idea is to help our users move from a favorite movie, to a new Reel with potentially many more <strong>new</strong> favorite movies. Hopefully this app will help you find that next movie to watch, as you sink in your couch with a nice bowl of popcorn. Thanks for being a user and contributing to our community!
 
-## Available Scripts
 
-In the project directory, you can run:
+## Summary of User Experience
+  [Link to wireframe here](https://www.figma.com/file/RVZLbaNHTxZzNSSU12yiKT/MovieReel?node-id=0%3A1). The basic layout started like the wirefram above. The user should register --> get send to login --> then get sent to their Reels page. Once there they can start making new reels, and then adding movies to those reels. Movie_Reels uses an external API omdb, for users to search movies. This is beneficial, as it creates congruency when users have the same movie in seperate reels. 
+  Although it is not built out yet, there is a function planned to help users find Reels they may like. This will be done by searching for other users Reels that have the same movie in it. This will use the external_id to match similar movies.
 
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
