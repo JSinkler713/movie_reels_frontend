@@ -46,6 +46,19 @@ class Reels extends Component {
         this.setState({error: err.message })
       }); 
   }
+  deleteReel = (reelid) => {
+    console.log("trying to delete reel" + reelid)
+    fetch(`${API_URL}/reels/${reelid}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res=> {
+        console.log(res)
+        this.props.history.push('/reels');
+      })
+  }
 
   componentDidMount() {
     console.log("running componenet didmount")
@@ -94,7 +107,7 @@ class Reels extends Component {
           </div>
         </div>
         <div className="my-reels-container">
-        {this.state.arrayOfReels.map((reel, i) =><ReelCard key={i} reel_id={reel.Reel_id} reelTitle={reel.Reel} fetchMovies={this.props.fetchMovies} movies={this.state.moviesOfReelSelected} />)}
+        {this.state.arrayOfReels.map((reel, i) =><ReelCard key={i} reel_id={reel.Reel_id} deleteReel={this.deleteReel} reelTitle={reel.Reel} fetchMovies={this.props.fetchMovies} movies={this.state.moviesOfReelSelected} />)}
         </div>
           
       </div>

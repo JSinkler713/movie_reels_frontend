@@ -120,15 +120,14 @@ a:visited {
 .new-reel-form {
   background-image: url("./clapperboard.png");
   background-size: cover;
-  width: 230px;
-  height: 200px;
+  width: 264px;
+  height: 230px;
   display:flex;
   flex-direction: column;
-  
 }
 .inner-new-reel-form {
   font-family: 'Josefin Sans', cursive;
-  margin-top: 80px;
+  margin-top: 95px;
   margin-left: 10px;
 }
 .reel-card {
@@ -153,4 +152,40 @@ a:visited {
   font-weight: 500;
   font-size: 1.5rem;
 
+}
+
+.login-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}  
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+.form-group {
+  font-size: 1.5rem;
+}
+#login {
+  background-image: url("./clapperboard.png");
+  background-size: cover;
+  width: 500px;
+  height: 400px;
+  display:flex;
+  flex-direction: column-reverse;
+  text-align: center;
+}
+.login-button {
+  font-family: 'Josefin Sans';
+  font-weight: 500;
+  font-size: 2rem;
+  width: 400px;
+  border-radius: 9px;   
+}
+.delete-reel-button {
+  font-size: 1.5rem;
+}
+.login-input {
+  height: 30px;
+  border-radius: 8px;
 }

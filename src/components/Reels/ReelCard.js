@@ -28,24 +28,29 @@ class ReelCard extends Component {
         this.setState({error: err.message })
       }); 
   }
+  deleteReel = (reelId) => {
+    let id = this.props.reel_id
+    this.props.deleteReel(id)
+  }
   
   
   render() {
     if (this.state.movies.length == 0) {
       return ( 
-      <div>
+      <div className='reel-card'>
         <Link onClick={this.props.fetchMovies} to={`/reels/${this.props.reel_id}`}>
           { this.props.reelTitle } 
         </Link><br/>
+        <button className='delete-reel-button' onClick={this.deleteReel}>Delete Reel </button>
       </div>
     )} else {
-    return (
-      
+    return ( 
       <div className='reel-card'> 
         <Link onClick={this.props.fetchMovies} to={`/reels/${this.props.reel_id}`}>
           { this.props.reelTitle } 
         </Link><br/>
            <img src={this.state.movies[0].Poster} alt='no movies yet' />
+        <button className='delete-reel-button' onClick={this.deleteReel}>Delete Reel </button>
       </div>
       )}
    }
