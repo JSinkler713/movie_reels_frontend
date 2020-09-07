@@ -65,7 +65,7 @@ class Reel extends Component {
   render() {
 
   
-    if (this.state.movies.length === 0 || this.state.addMovie === true) {
+    if (this.state.movies.length !== 0 || this.state.addMovie === true) {
         return ( 
           <div className="Search">
               <p>Movie Search</p>  

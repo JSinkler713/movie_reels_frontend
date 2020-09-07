@@ -8,8 +8,10 @@ class Reels extends Component {
   state = { 
     userId: this.props.userId,
     newReelTitle: '',
-    arrayOfReels: [],
-    moviesOfReelSelected: ''
+    arrayOfReels: '',
+    moviesOfReelSelected: '',
+    deletedStatus: false,
+    addedReel: false,
   }
   
   handleChange = (event) => {
@@ -39,7 +41,9 @@ class Reels extends Component {
       .then(data=> {
         console.log("added data", data);
         //this will re-up the page to update with new reel
-        this.props.history.push('/reels');
+        // this doesn't seem to work
+        // this.props.history.push('/reels');
+        this.setState({ addedReel: true })
         
       })
       .catch(err => {
@@ -56,27 +60,35 @@ class Reels extends Component {
     })
       .then(res=> {
         console.log(res)
-        this.props.history.push('/reels');
+        this.setState({ deletedStatus: true })
+        this.props.fetchReels()
+        //this.props.fetchReels()
+        //don't think this is the best way
+        //this.props.history.push('/reels');
       })
+  }
+  componentDidMount() {
+      fetch(`${API_URL}/users/${this.state.userId}/reels`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+        .then(res=> res.json())
+        .then(data=> {
+          console.log("Success we got the data", data);
+          this.setState({arrayOfReels: (data)})
+        })
+        .catch(err => {
+          this.setState({error: err.message })
+        });
+    //if (this.state.arrayOfReels.length == 0 || this.state.deletedStatus == true) { 
+     // this.props.fetchReels()
+   //  this.setState({ deletedStatus: false })
+  // }
   }
 
-  componentDidMount() {
-    let userId = this.state.userId
-    fetch(`${API_URL}/users/${userId}/reels`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res=> res.json())
-      .then(data=> {
-        console.log("Success we got the data", data);
-        this.setState({arrayOfReels: (data)})
-      })
-      .catch(err => {
-        this.setState({error: err.message })
-      }); 
-  }
+
   render() {
     return (
       <div>
@@ -100,12 +112,12 @@ class Reels extends Component {
           </div>
         </div>
         <div className="my-reels-container">
-        {this.state.arrayOfReels.map((reel, i) =><ReelCard key={i}
+          {this.state.arrayOfReels ? this.state.arrayOfReels.map((reel, i) =><ReelCard key={i}
           reel_id={reel.Reel_id}
           deleteReel={this.deleteReel}
           reelTitle={reel.Reel}
           fetchMovies={this.props.fetchMovies}
-          movies={this.state.moviesOfReelSelected} />)}
+                movies={this.state.moviesOfReelSelected} />) : <h1>no reels</h1>}
         </div>
           
       </div>

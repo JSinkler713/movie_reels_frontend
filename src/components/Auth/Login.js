@@ -27,7 +27,7 @@ class Login extends Component {
     })
       .then(res=> res.json())
       .then(data=> {
-        console.log("Success", data);
+        console.log("Success from Auth/login", data);
         this.props.setCurrentUser(data);
        // sends user to reels page
         this.props.history.push('/reels');

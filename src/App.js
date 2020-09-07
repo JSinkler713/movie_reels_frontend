@@ -11,24 +11,50 @@ class App extends Component {
     currentUser: localStorage.getItem('uid'),
     userId: '',
     moviesOfReelSelected: [],
-    reel_id:''
+    reel_id:'',
+    arrayOfReels: [],
   };
 
-  componentDidMount() {
-    this.hydrateUserId()
-  }
+//  componentDidMount() {
+//    this.hydrateUserId()
+//  }
   
-  hydrateUserId = () => {
-    if (this.state.currentUser) {
-      return this.setState({ userId: JSON.parse(atob(localStorage.getItem('uid').split('.')[1])).id })
-    }
-  }
+
+//  hydrateUserId = () => {
+//  if (this.state.currentUser) {
+//      return this.setState({ userId: JSON.parse(atob(localStorage.getItem('uid').split('.')[1])).id })
+//    }
+//  }
 
   setCurrentUser = (data) => {
-    this.setState({ currentUser: data.signedJwt })
-    this.setState({ userId: data.id })
+ //   this.setState({ currentUser: data.signedJwt })
+   // this.setState({ userId: data.id })
+    this.setState({ currentUser: data.signedJwt, userId: data.id })
     localStorage.setItem('uid', data.signedJwt);
   };
+ 
+
+  fetchReels = () => {
+    let userId = this.state.userId
+    console.log("running fetchReels")
+    if(userId != '') {
+      console.log('in the fetchreels the ' +userId+ 'is the userId')
+      fetch(`${API_URL}/users/${userId}/reels`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+        .then(res=> res.json())
+        .then(data=> {
+          console.log("Success we got the data", data);
+          this.setState({arrayOfReels: (data)})
+        })
+        .catch(err => {
+          this.setState({error: err.message })
+        });
+    }
+  }
   
   
   logout = () => {
@@ -58,13 +84,13 @@ class App extends Component {
         this.setState({error: err.message })
       }); 
   }
-
+  
   render() {
     return (
       <>
         <NavBar currentUser={this.state.currentUser} logout={this.logout} />
         <div className="container">
-          <Routes fetchMovies={this.fetchMovies} moviesOfReelSelected={this.state.moviesOfReelSelected} currentUser={this.state.currentUser} userId={this.state.userId}  setCurrentUser={this.setCurrentUser} />
+          <Routes fetchReels={this.fetchReels} arrayOfReels={this.state.arrayOfReels} fetchMovies={this.fetchMovies} moviesOfReelSelected={this.state.moviesOfReelSelected} currentUser={this.state.currentUser} userId={this.state.userId}  setCurrentUser={this.setCurrentUser} />
         </div>
       </>
     );
