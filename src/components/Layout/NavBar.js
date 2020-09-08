@@ -19,6 +19,9 @@ const NavBar = ({ currentUser, logout }) => {
   const authLinks = ( 
     <>  
       <li className="nav-item">
+        <NavLink className="nav-link" exact to="/">Home</NavLink>
+      </li>
+      <li className="nav-item">
         <NavLink className="nav-link" exact to="/profile">Profile</NavLink>
       </li>
       <li className="nav-item">
