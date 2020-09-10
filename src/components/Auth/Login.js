@@ -1,13 +1,15 @@
 import React, { useState, useContext} from 'react';
+import {UserContext} from '../../UserContext'
 import { API_URL } from '../../constants/constants';
-
+import { useHistory} from 'react-router-dom'
 const Login = (props)=>{
   //state = {
     //email: '',
     //password: '',
     //error: null,
   //};
-  
+  const history = useHistory()
+  const [user, setUser] = useContext(UserContext)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
@@ -30,7 +32,7 @@ const Login = (props)=>{
     // handle submit here
     event.preventDefault();
  //   const user = this.state
-    const user = {
+    const userForm = {
       email: email,
       password: password,
       error: null
@@ -40,15 +42,25 @@ const Login = (props)=>{
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(userForm)
     })
       .then(res=> res.json())
       .then(data=> {
         console.log("Success from Auth/login", data);
-        //
-        props.setCurrentUser(data);
-       // sends user to reels page
-        props.history.push('/reels');
+        //set user in context and in localstorage
+        localStorage.setItem('uid', data.signedJwt);
+        setUser({
+          ...user,
+          currentUser: data.signedJwt,
+          userId: data.id,
+          username: data.username,
+          email: data.email 
+        })
+        // with useHistory hook
+        history.push('/reels')
+        //props.setCurrentUser(data);
+        // sends user to reels page
+       // props.value.history.push('/reels');
       })
       .catch(err => {
       //  this.setState({error: err.message })
