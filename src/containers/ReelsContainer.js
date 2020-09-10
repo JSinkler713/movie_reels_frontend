@@ -1,11 +1,36 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Reel from '../components/Reels/Reel' 
 import ReelCard from '../components/Reels/ReelCard'
+import {UserContext} from '../UserContext'
 import { API_URL } from '../constants/constants';
 import { Switch, Route } from 'react-router-dom';
 
-class Reels extends Component {
-  state = { 
+function Reels() {
+  const [user, setUser] = useContext(UserContext)
+  const [reels, setReels] = useState()
+
+  useEffect(()=> {
+    let userId = user.userId
+    console.log("running fetchReels")
+    if(userId != '') {
+      console.log('in the fetchreels the ' +userId+ 'is the userId')
+      fetch(`${API_URL}/users/${userId}/reels`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+        .then(res=> res.json())
+        .then(data=> {
+          console.log("Success we got the data", data);
+          setReels(data)
+        })
+        .catch(err => {
+          console.log(err.message)
+        });
+    }
+  }, [])
+/*   state = { 
     userId: this.props.userId,
     newReelTitle: '',
     arrayOfReels: '',
@@ -86,23 +111,22 @@ class Reels extends Component {
      // this.props.fetchReels()
    //  this.setState({ deletedStatus: false })
   // }
-  }
+  } */
 
 
-  render() {
     return (
-      <div>
-        <h3> {this.props.userId} 's MovieReels</h3>
+      <div className='reel-container'>
+        <h3> {user.username} 's MovieReels</h3>
         <div className='top-of-reels'>
         <section className="new-reel-form">
           <div className='inner-new-reel-form'>
           <h2>New Reel</h2>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={()=> console.log('hey')}>
             <div className="form-group">
               <label htmlFor="email">Reel Name</label>
-              <input type="text" id="newReel" name="newReelTitle" value={this.state.newReelTitle}  onChange={this.handleChange} placeholder="Everything Hobbit"/>
+              <input type="text" id="newReel" name="newReelTitle" value={'hey'}  onChange={()=> console.log('changed')} placeholder="Everything Hobbit"/>
             </div>
-            <button type="Submit" onClick={this.makeReel}>Add Reel</button>
+            <button type="Submit" onClick={()=> console.log('makerreel')}>Add Reel</button>
           </form>
           </div>
         </section>
@@ -112,17 +136,17 @@ class Reels extends Component {
           </div>
         </div>
         <div className="my-reels-container">
-          {this.state.arrayOfReels ? this.state.arrayOfReels.map((reel, i) =><ReelCard key={i}
-          reel_id={reel.Reel_id}
-          deleteReel={this.deleteReel}
-          reelTitle={reel.Reel}
-          fetchMovies={this.props.fetchMovies}
-                movies={this.state.moviesOfReelSelected} />) : <h1>no reels</h1>}
-        </div>
           
+          {reels ? reels.map((reel, i) =><ReelCard key={i}
+          reel_id={reel.Reel_id}
+          deleteReel={()=>console.log('delete it')}
+          reelTitle={reel.Reel}
+          fetchMovies={()=>console.log('fetch stuff')}
+           />) : <h1>no reels</h1>}
+          
+        </div>
       </div>
     );  
-  }
 };
 
 export default Reels;
