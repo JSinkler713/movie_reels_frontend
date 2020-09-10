@@ -1,40 +1,38 @@
-import React, { Component } from 'react';
+import React, { useState, useEffecti, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import Routes from './config/routes';
 import NavBar from './components/Layout/NavBar';
 import { API_URL } from './constants/constants';
-
+import { useHistory} from 'react-router-dom'
 import './App.css';
+import { UserContextProvider, UserContext } from './UserContext';
 
-class App extends Component {
-  state = {
+function App() {
+  const [user, setUser] = useContext(UserContext)
+  const history = useHistory()
+
+
+
+/*   state = {
     currentUser: localStorage.getItem('uid'),
     userId: '',
+    username: '',
+    email: '',
     moviesOfReelSelected: [],
     reel_id:'',
     arrayOfReels: [],
-  };
+  }; */
 
-//  componentDidMount() {
-//    this.hydrateUserId()
-//  }
-  
-
-//  hydrateUserId = () => {
-//  if (this.state.currentUser) {
-//      return this.setState({ userId: JSON.parse(atob(localStorage.getItem('uid').split('.')[1])).id })
-//    }
-//  }
-
-  setCurrentUser = (data) => {
+/*   const setCurrentUser = (data) => {
  //   this.setState({ currentUser: data.signedJwt })
    // this.setState({ userId: data.id })
-    this.setState({ currentUser: data.signedJwt, userId: data.id })
+   console.log('this is data up in App', data)
+    this.setState({ currentUser: data.signedJwt, userId: data.id, username: data.username, email: data.email })
     localStorage.setItem('uid', data.signedJwt);
-  };
+  }; */
  
-
-  fetchReels = () => {
+// Moved logic down into reelsContainer
+/*   const fetchReels = () => {
     let userId = this.state.userId
     console.log("running fetchReels")
     if(userId != '') {
@@ -54,19 +52,28 @@ class App extends Component {
           this.setState({error: err.message })
         });
     }
-  }
+  } */
   
-  
-  logout = () => {
+  // refactored for hooks 
+  const logout = () => {
     // handle logout
     localStorage.removeItem('uid');
-    this.setState({currentUser: null});
-    this.setState({userId: ''});
-    this.props.history.push('/login')
-
+    setUser({
+      uid: '',
+      userId: '',
+      username: '',
+      email: '',
+      moviesOfReelSelected: [],
+      reel_id:'',
+      arrayOfReels: [],
+    })
+    //use history hook
+    history.push('/login')
   };
   
-  fetchMovies = (reel_id) => {
+  //moving logic down into moviescontainer
+  /*
+  const fetchMovies = (reel_id) => {
     console.log(this.state.reel_id)
     console.log(`fetching all movies with reel id ${reel_id}`)
     this.setState({ reel_id: reel_id })  
@@ -84,17 +91,15 @@ class App extends Component {
         this.setState({error: err.message })
       }); 
   }
-  
-  render() {
+  */ 
     return (
-      <>
-        <NavBar currentUser={this.state.currentUser} logout={this.logout} />
+      <UserContextProvider>
+        <NavBar logout={logout}/>
         <div className="container">
-          <Routes fetchReels={this.fetchReels} arrayOfReels={this.state.arrayOfReels} fetchMovies={this.fetchMovies} moviesOfReelSelected={this.state.moviesOfReelSelected} currentUser={this.state.currentUser} userId={this.state.userId}  setCurrentUser={this.setCurrentUser} />
+          <Routes />
         </div>
-      </>
+      </UserContextProvider>
     );
-  };
 };
 
 export default withRouter(App);
