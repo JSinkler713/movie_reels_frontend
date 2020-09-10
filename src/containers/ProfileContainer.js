@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { useContext} from 'react';
+import {UserContext} from '../UserContext'
 import Profile from '../components/Profile/Profile';
 import { API_URL } from '../constants/constants';
 
-class ProfileContainer extends Component {
-  state = { 
-    user: {}, 
-  };  
+function ProfileContainer() {
+  const [user, setUser] = useContext(UserContext)
 
+  /*
   componentDidMount() {
+    console.log(this.props)
+    console.log('props in profile container')
     // Fetch call to get user information
     fetch(`${API_URL}/users`, {
       headers: {
@@ -16,13 +17,12 @@ class ProfileContainer extends Component {
       }   
     })  
     .then(res => res.json())
-    .then(data => this.setState({ user: data.data })) 
+//    .then(data => this.setState({ user: data.data })) 
+    .then(data=> console.log(data))
     .catch(err => console.log(err))
   };  
-
-  render() {
-    return <Profile user={this.state.user} />;
-  };  
+  */
+  return <Profile user={user} />
 };
 
 export default ProfileContainer;
