@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import {UserContext} from '../../UserContext'
 
-const NavBar = ({ currentUser, logout }) => {
+const uid = localStorage.getItem('uid')
+console.log(uid)
+const NavBar = ({ logout }) => {
+  const [user, setUser] = useContext(UserContext)
   const links = ( 
     <>  
       <li className="nav-item">
@@ -43,7 +47,7 @@ const NavBar = ({ currentUser, logout }) => {
         </div>
         <div className="links-container">
             <ul className="links">
-            { currentUser ? authLinks : links }
+            { user.currentUser ? authLinks : links }
             </ul>
         </div>
       </div>
