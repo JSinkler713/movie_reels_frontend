@@ -13,7 +13,7 @@ class MovieContainer extends Component {
         imgSrc={movie.Poster}
         movie={movie}
           reel_id={this.props.reel_id}
-          searchOff={this.props.searchOff}
+          //searchOff={this.props.searchOff}
           className='myMovies'
           />
       })  
