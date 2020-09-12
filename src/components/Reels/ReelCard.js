@@ -14,7 +14,8 @@ const ReelCard = (props)=> {
   const setReelId =()=> {
     setUser({
       ...user,
-      reel_id: props.reel_id
+      reel_id: props.reel_id,
+      reel_title: props.reelTitle
     })
   }
 
@@ -40,7 +41,7 @@ const ReelCard = (props)=> {
       .catch(err => {
         console.log(err)
       }); 
-  }, [])
+  }, [setUser])
 
   return ( 
     <div className='reel-card'>
@@ -50,7 +51,6 @@ const ReelCard = (props)=> {
           { props.reelTitle } 
         </Link>
         </button> 
-        <button className='delete-reel-button' onClick={()=>props.deleteReel(props.reel_id)}>X</button>
       </div>
         {image 
           ? (<img src={image} alt='no movies yet' />)

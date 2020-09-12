@@ -2,6 +2,7 @@ import React, {useContext, useState, useEffect} from 'react';
 import { API_URL } from '../../constants/constants';
 import {UserContext} from '../../UserContext'
 import MovieContainer from '../../containers/MovieContainer'
+import { useHistory} from 'react-router-dom'
 
 function Reel() {
   const [foundMovies, setFoundMovies] = useState([])
@@ -9,7 +10,7 @@ function Reel() {
   const [user, setUser] = useContext(UserContext)
   const [movieToSearch, setMovieToSearch] = useState('')
   const [newSearch, setNewSearch] = useState('false')
-
+  const history = useHistory()
 
   useEffect(()=> {
     console.log('user info', user)
@@ -25,6 +26,19 @@ function Reel() {
     searchedMovies: '',
     addMovie: false
   } */
+  const deleteReel = (reel_id) => {
+    console.log("trying to delete reel" + reel_id)
+    fetch(`${API_URL}/reels/${reel_id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res=> {
+        console.log(res)
+        history.push('/reels')
+      })
+  }
   
   const handleInput = (e) => {
     setMovieToSearch(e.target.value)
@@ -59,22 +73,11 @@ function Reel() {
       .then(data=> {
         console.log("Success we got the movie data", data);
         setReelMovies(data)
-        //this.setState({movies: (data)})
-        //this.setState({reelName: (data[0].Reel)})
-       // sends user to profile page
-       // this.props.history.push('/reels');
       })
       .catch(err => {
         //this.setState({error: err.message })
       }); 
   }
-
-  /* componentDidMount() {
-    // console.log({ this.props.match.params.id })
-    this.setState({ reel_id: this.props.match.params.id})
-    this.fetchMovies(this.props.match.params.id)
-
-  } */
 
   let arrayOfMovies= reelMovies.map((movie, i)=> {
     return <div className='myMovies'>
@@ -102,7 +105,8 @@ function Reel() {
        }
       </div>
       </div>
-      <h2>My Movies</h2>
+      <h2>Movies in {user.reel_title}: </h2>
+      <button onClick={()=> deleteReel(user.reel_id)}>Delete Entire Reel</button>
       <div className='myMoviesContainer'>
         {arrayOfMovies}
       </div>
