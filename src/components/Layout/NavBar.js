@@ -47,7 +47,7 @@ const NavBar = ({ logout }) => {
         </div>
         <div className="links-container">
             <ul className="links">
-            { user.currentUser ? authLinks : links }
+            { user.userId ? authLinks : links }
             </ul>
         </div>
       </div>

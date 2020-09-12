@@ -19,9 +19,11 @@ import Reel from '../components/Reels/Reel';
 // {...rest} looks at the rest of the properties in the private route
 export default withRouter(()=> {
   const [user, setUser] = useContext(UserContext)
+  const uid = localStorage.getItem('uid')
+  console.log('uid', uid)
   const PrivateRoute = ({component: Component, ...rest})=>(
     <Route {...rest} render={(props)=> (
-      user.currentUser
+      uid
       ? <Component {...rest} {...props} />
       : <Redirect to='/login' />
     )} />

@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react';
+import React, { useState, useContext, useEffect} from 'react';
 import {UserContext} from '../../UserContext'
 import { API_URL } from '../../constants/constants';
 import { useHistory} from 'react-router-dom'
@@ -13,6 +13,17 @@ const Login = (props)=>{
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
+
+  useEffect(()=> {setUser({
+      uid: '',
+      userId: '',
+      username: '',
+      email: '',
+      moviesOfReelSelected: [],
+      reel_id:'',
+      arrayOfReels: [],
+    })
+  }, [])
 
   const handleChange = (event) => {
     if (event.target.name == 'password'){
@@ -49,6 +60,9 @@ const Login = (props)=>{
         console.log("Success from Auth/login", data);
         //set user in context and in localstorage
         localStorage.setItem('uid', data.signedJwt);
+        localStorage.setItem('userId', data.id)
+        localStorage.setItem('email' , data.email) 
+        localStorage.setItem('username', data.username)
         setUser({
           ...user,
           currentUser: data.signedJwt,

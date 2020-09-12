@@ -16,7 +16,6 @@ const ReelCard = (props)=> {
       ...user,
       reel_id: props.reel_id
     })
-    
   }
 
   useEffect(()=> {
@@ -35,45 +34,24 @@ const ReelCard = (props)=> {
           setMovies(data[random])
           setImage(data[random].Poster)
         }else {
-          setImage('https://placebear.com/g/200/300')
+          setImage('https://placebear.com/g/300/445')
         }
-       // sends user to profile page
-       // this.props.history.push('/reels');
       })
       .catch(err => {
-        //this.setState({error: err.message })
+        console.log(err)
       }); 
   }, [])
 
-  /*
-  componentDidMount() {
-    fetch(`${API_URL}/reels/${this.props.reel_id}/movies`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res=> res.json())
-      .then(data=> {
-        console.log("Success we got the data", data);
-        this.setState({movies: (data)})
-       // sends user to profile page
-       // this.props.history.push('/reels');
-      })
-      .catch(err => {
-        this.setState({error: err.message })
-      }); 
-  }
-  deleteReel = (reelId) => {
-    let id = this.props.reel_id
-    this.props.deleteReel(id)
-  }
-  */  
   return ( 
     <div className='reel-card'>
-      <Link onClick={setReelId} to={`/reels/${props.reel_id}`}>
-        { props.reelTitle } 
-      </Link><br/>
+      <div>
+       <button className='reel-card-title'>
+        <Link  onClick={setReelId} to={`/reels/${props.reel_id}`}>
+          { props.reelTitle } 
+        </Link>
+        </button> 
+        <button className='delete-reel-button' onClick={()=>props.deleteReel(props.reel_id)}>X</button>
+      </div>
         {image 
           ? (<img src={image} alt='no movies yet' />)
           : (
@@ -81,7 +59,6 @@ const ReelCard = (props)=> {
           </div>
           )
         }
-      <button className='delete-reel-button' onClick={()=> console.log('delete')}>Delete Reel </button>
     </div>
   )
 };

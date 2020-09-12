@@ -1,4 +1,4 @@
-import React, { useState, useEffecti, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import Routes from './config/routes';
 import NavBar from './components/Layout/NavBar';
@@ -58,6 +58,9 @@ function App() {
   const logout = () => {
     // handle logout
     localStorage.removeItem('uid');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('email');
+    localStorage.removeItem('username');
     setUser({
       uid: '',
       userId: '',
