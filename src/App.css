@@ -64,7 +64,8 @@ a:visited {
 .my-reels-container {
   display: flex;
   flex-wrap: wrap;
-  flex-align: space-between;
+  justify-content: space-evenly;
+  width: 90vw;
 }
 .myMovies {
   display: flex;
@@ -133,8 +134,8 @@ a:visited {
 .reel-card {
   display: flex;
   flex-direction: column;
-  width: 28%;
-  height: 50%; 
+  width: 300px;
+  height: 550px; 
   padding: 2%;
   font-family: 'Roboto', sans-serif;
   font-size: 2rem;
@@ -143,7 +144,7 @@ a:visited {
 }
 .top-of-reels {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   
 }
 .top-of-reels-info {
@@ -184,6 +185,25 @@ a:visited {
 }
 .delete-reel-button {
   font-size: 1.5rem;
+  width: 30px;
+  color: red;
+}
+.delete-reel-button:focus,
+.delete-reel-button:hover {
+  transform: scale(1.05);
+  filter: brightness(120%);
+}
+.reel-card-title {
+  text-decoration: underline;
+  border: none;
+  background-color: #f1f1f1;
+  font-size: 2rem;
+}
+.reel-card-title:focus,
+.reel-card-title:hover {
+  text-decoration: underline;
+  filter: brightness(120%);
+  transform: scale(1.05);
 }
 .login-input {
   height: 30px;
