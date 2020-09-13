@@ -2,16 +2,6 @@
 @import url("https://fonts.googleapis.com/css?family=Josefin+Slab|Open+Sans|Roboto&display=swap");
 
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 a {
   text-decoration: none;
@@ -20,29 +10,8 @@ a:visited {
   color: black;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  font-family: 'Josefin Sans', cursive;
-}
-
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .nav-item , .nav-link {
@@ -106,9 +75,8 @@ a:visited {
 .app-container {
   font-family: 'Josefin Sans', cursive;
   border: 2px gray solid;
+  display: flex;
   margin-top: 3px;
-  display: grid;
-  grid-template-columns: 25%;
   background: rgb(246, 246, 246);
 }
 .title {
@@ -159,14 +127,31 @@ a:visited {
   display: flex;
   justify-content: center; 
   align-items: center;
+  margin-top: 50px;
 }  
 .login-form {
   display: flex;
   flex-direction: column;
+  margin: 5px 80px;
 }
 .form-group {
   font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  margin: 5px 0;
 }
+.inner-new-reel-form form .form-group {
+  width: 255px;
+  justify-content: flex-start;
+}
+#newReel {
+  width: 120px;
+}
+.email-login, .password-login  {
+  padding-top: 10px;
+}
+
 #login {
   background-image: url("./clapperboard.png");
   background-size: cover;
@@ -176,12 +161,24 @@ a:visited {
   flex-direction: column-reverse;
   text-align: center;
 }
+.login-button-container {
+  width: 300px;
+  padding-top: 13px;
+}
 .login-button {
   font-family: 'Josefin Sans';
-  font-weight: 500;
+  font-weight: 300;
   font-size: 2rem;
-  width: 400px;
+  width: 300px;
   border-radius: 9px;   
+}
+.login-button:hover {
+  filter: brightness(120%);
+  transform: scale(1.05);
+}
+.login-input {
+  height: 30px;
+  border-radius: 8px;
 }
 .delete-reel-button {
   font-size: 1.5rem;
@@ -205,10 +202,7 @@ a:visited {
   filter: brightness(120%);
   transform: scale(1.05);
 }
-.login-input {
-  height: 30px;
-  border-radius: 8px;
-}
+
 .poster-standin {
   width: 100%;
   height: 444px;
