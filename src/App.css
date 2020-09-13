@@ -52,8 +52,8 @@ a:visited {
   font-size: 2em;
 }
 .links-container {
-  grid-column-start: col-start 2;
   display: flex;
+  justify-content: flex-start;
 }
 .nav-item {
   font-size: 20px;
@@ -76,8 +76,28 @@ a:visited {
   font-family: 'Josefin Sans', cursive;
   border: 2px gray solid;
   display: flex;
+  flex-direction: row;
   margin-top: 3px;
   background: rgb(246, 246, 246);
+}
+@media screen and (max-width:815px) {
+  .app-container {
+    display: flex;
+    flex-direction: column
+  }
+  .reel-holder {
+    display: none;
+  }
+  .title-container {
+    font-size: 1rem;
+    justify-content: center;
+  }
+  .links-container{
+    justify-content: center;
+  }
+  .top-of-reels-info {
+    display: none;
+  }
 }
 .title {
  margin: 0;
