@@ -39,9 +39,6 @@ const NavBar = ({ logout }) => {
 
   return (
       <div className="app-container">
-        <div className='reel-holder'>
-          <img className='reel-image' src="https://www.seekpng.com/png/detail/10-109199_lights-camera-action-movie-reel-transparent-background.png" alt="Lights, Camera, Action - Movie Reel Transparent Background@seekpng.com" />
-        </div>
         <div className='title-container'>
           <h1 className="title">MOVIE_REELS</h1>
         </div>
