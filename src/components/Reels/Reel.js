@@ -3,6 +3,10 @@ import { API_URL } from '../../constants/constants';
 import {UserContext} from '../../UserContext'
 import MovieContainer from '../../containers/MovieContainer'
 import { useHistory} from 'react-router-dom'
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap'
 
 function Reel() {
   const [foundMovies, setFoundMovies] = useState([])
@@ -80,10 +84,12 @@ function Reel() {
   }
 
   let arrayOfMovies= reelMovies.map((movie, i)=> {
-    return <div className='myMovies'>
-      <h3>Title:{movie.Movie}</h3>
-      <img src={movie.Poster} alt='incorrect image' />
-      </div>
+    return <Card className='myMovies' style={{margin: '25px'}}>
+      <CardBody>
+        <CardTitle style={{fontSize: '1.5rem'}}>Title:{movie.Movie} </CardTitle>
+        <CardImg src={movie.Poster} alt='incorrect image' />
+      </CardBody>
+      </Card>
   })  
 
   //render() {
