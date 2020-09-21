@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 @import url("https://fonts.googleapis.com/css?family=Josefin+Slab|Open+Sans|Roboto&display=swap");
 
-
+#root {
+  background-color: #fcf8f8;
+}
 
 a {
   text-decoration: none;
@@ -18,7 +20,6 @@ a:visited {
   list-style-type: none;
   display: inline;
   margin: 5px;
-  justify: right;
   font-family: 'Josefin Sans', cursive;
 }
 .reel-name-header {
@@ -28,20 +29,28 @@ a:visited {
 }
 .myMoviesContainer {
   display:flex;
+  justify-content: space-evenly;
+  width: 90vw;
+  margin-bottom: 50px;
   flex-wrap: wrap;
 }
 .my-reels-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  width: 90vw;
+  width: 100vw;
+  margin-top: 30px;
 }
 .myMovies {
   display: flex;
   flex-direction: column;
-  width: 28%;
-  height: 50%;
+  width: 300px;
+  height: 550px; 
   padding: 2%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
 }
 .home-page-container {
   display: flex;
@@ -53,7 +62,10 @@ a:visited {
 }
 .links-container {
   display: flex;
-  justify-content: flex-start;
+  padding-top:20px;
+}
+.nothing-container {
+  flex-grow: 1;
 }
 .nav-item {
   font-size: 20px;
@@ -61,87 +73,63 @@ a:visited {
   padding-top: 40px;
 }
 .title-container {
-  grid-column-start: col-start 1;
   font-family: 'Josefin Sans', cursive;
   font-size: 2em;
   text-align: center;
   padding-top: 10px;
   display: flex;
-  flex-align: center;
+  flex-grow: 2;
 }
 .title {
   text-shadow: 2px 3px darkslategrey;
 }
 .app-container {
   font-family: 'Josefin Sans', cursive;
-  border: 2px gray solid;
+  border-bottom: 2px gray solid;
   display: flex;
   flex-direction: row;
-  margin-top: 3px;
   background: rgb(246, 246, 246);
+  margin-bottom: 10px;
 }
-@media screen and (max-width:815px) {
-  .app-container {
-    display: flex;
-    flex-direction: column
-  }
-  .reel-holder {
-    display: none;
-  }
-  .title-container {
-    font-size: 1rem;
-    justify-content: center;
-  }
-  .links-container{
-    justify-content: center;
-  }
-  .top-of-reels-info {
-    display: none;
-  }
-}
+
 .title {
  margin: 0;
 }
-.reel-image {
+/* .reel-image {
   width: 50%;
   height: 75%;
-}
+} */
 .new-reel-form {
   background-image: url("./clapperboard.png");
   background-size: cover;
-  width: 264px;
-  height: 230px;
+  width: 300px;
+  height: 262px;
   display:flex;
   flex-direction: column;
+  padding-top: 40px;
+  
 }
 .inner-new-reel-form {
   font-family: 'Josefin Sans', cursive;
   margin-top: 95px;
   margin-left: 10px;
 }
-.reel-card {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  height: 550px; 
-  padding: 2%;
-  font-family: 'Roboto', sans-serif;
-  font-size: 2rem;
-  font-weight: 800;
-  text-align: center;
-}
 .top-of-reels {
   display: flex;
-  justify-content: space-between;
-  
+  justify-content: center;
 }
-.top-of-reels-info {
+.icon-holder {
+  position: absolute;
+  right: 15px;
+}
+/* .top-of-reels-info {
   width: 60%;
   font-family: 'Josefin Sans';
   font-weight: 500;
   font-size: 1.5rem;
-
-}
+  display: flex;
+  flex-direction: column-reverse;
+} */
 
 .login-container {
   display: flex;
@@ -168,9 +156,7 @@ a:visited {
 #newReel {
   width: 120px;
 }
-.email-login, .password-login  {
-  padding-top: 10px;
-}
+
 
 #login {
   background-image: url("./clapperboard.png");
@@ -210,11 +196,30 @@ a:visited {
   transform: scale(1.05);
   filter: brightness(120%);
 }
+.reel-card {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 325px; 
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-top: 10px;
+  overflow: hidden;
+  box-shadow: 1px 2px rgba(0, 0, 5, 0.3);
+  transition: all .3s ease-in-out;
+}
+.reel-card:hover {
+  opacity: 1;
+  transform: scale(1.05);
+  box-shadow: 3px 5px rgba(0, 0, 5, 0.3);
+}
 .reel-card-title {
   text-decoration: underline;
   border: none;
   background-color: #f1f1f1;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 .reel-card-title:focus,
 .reel-card-title:hover {
@@ -225,7 +230,6 @@ a:visited {
 
 .poster-standin {
   width: 100%;
-  height: 444px;
   background-color: gray;
 }
 .reel-container {
@@ -238,4 +242,37 @@ a:visited {
   font-weight: 600px;
   font-size: 32px;
   text-shadow: 1px 3px rgba(0, 0, 0, .3);
+}
+.card-img, .card-img-bottom, .card-img-top {
+  width: 100%;
+}
+
+@media screen and (max-width:815px) {
+  .app-container {
+    display: flex;
+    flex-direction: column
+  }
+  .nav-item {
+    margin: 0px;
+  }
+  .reel-holder {
+    display: none;
+  }
+  .title-container {
+    font-size: 1rem;
+    justify-content: center;
+  }
+  .links-container{
+    justify-content: center;
+    padding-top: 0px;
+  }
+  .links-container .links {
+    padding: inherit;
+  }
+  .top-of-reels-info {
+    display: none;
+  }
+}
+.hidden {
+  display: none;
 }
