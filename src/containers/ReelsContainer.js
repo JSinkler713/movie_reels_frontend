@@ -4,12 +4,14 @@ import ReelCard from '../components/Reels/ReelCard'
 import {UserContext} from '../UserContext'
 import { API_URL } from '../constants/constants';
 import { Switch, Route } from 'react-router-dom';
+import Plus from '../Icons/Plus'
 
 function Reels() {
   const [user, setUser] = useContext(UserContext)
   const [newReel, setNewReel] = useState('')
   const [reels, setReels] = useState()
   const [fetched, setFetched] = useState(false)
+  const [hidden, setHidden] = useState(false)
   let userID = localStorage.getItem('userId')
 
   useEffect(()=> {
@@ -26,12 +28,19 @@ function Reels() {
         .then(data=> {
           console.log("Success we got the data", data);
           setReels(data)
+          if (data.length > 0) {
+            setHidden(!hidden)
+          }
         })
         .catch(err => {
           console.log(err.message)
         });
     }
   }, [fetched])
+
+  const toggleHidden = ()=> {
+    setHidden(!hidden)
+  }
 
   const handleChange = (event) => {
     setNewReel(event.target.value);
@@ -83,24 +92,24 @@ function Reels() {
 
   return (
     <div className='reel-container'>
-      <h3> {user.username} 's MovieReels</h3>
+      <h3 style={{display: 'none'}}> {user.username} 's MovieReels</h3>
       <div className='top-of-reels'>
-      <section className="new-reel-form">
+        <div className='icon-holder' onClick={toggleHidden}>
+          <Plus  width={"36px"} height={"36px"} />
+        </div>
+        <section  className={
+           hidden?'hidden':'new-reel-form'}>
         <div className='inner-new-reel-form'>
         <h2>New Reel</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="email">Reel Name</label>
-            <input type="text" id="newReel" name="newReelTitle" value={newReel}  onChange={handleChange} placeholder="Everything Hobbit"/>
+            <input type="text" id="newReel" name="newReelTitle" value={newReel}  onChange={handleChange} placeholder=""/>
           </div>
           <button type="Submit">Add Reel</button>
         </form>
         </div>
       </section>
-        <div className='top-of-reels-info'>
-          <p>Make a new reel on your left. If you want to browse one of your already created reels, just click the reel title, above it's poster. Make sure to contribute by making new Reels of Movies that you think should belongtogether. We count on your contributoin to make Movie_Reels great!
-          </p>
-        </div>
       </div>
       <div className="my-reels-container">
         
