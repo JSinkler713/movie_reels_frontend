@@ -2,6 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import {UserContext} from '../UserContext'
 import { useHistory} from 'react-router-dom'
 import { API_URL } from '../constants/constants';
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap'
 
 const Movie = (props)=> {
   const [user, setUser]= useContext(UserContext)
@@ -51,13 +55,14 @@ const Movie = (props)=> {
   }
     
   return (
-    <div className='myMovies'>
-      <h3>Title:{props.title} </h3>
-      <p>{props.year}</p>
-      <img src={props.imgSrc} alt="poster" />
-      <div><button onClick={onClickadd}><strong>Add to Reel!</strong></button>
-    </div>
-    </div>
+    <Card className='myMovies'>
+      <CardBody>
+      <CardTitle style={{fontSize: '1.5rem'}}>Title:{props.title} </CardTitle>
+      <CardSubtitle style={{fontSize: '1rem'}}>{props.year}</CardSubtitle>
+      <CardImg src={props.imgSrc} alt="poster" />
+      <Button onClick={onClickadd}><strong>Add to Reel!</strong></Button>
+      </CardBody>
+    </Card>
   )
 }
 
