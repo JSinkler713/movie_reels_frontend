@@ -2,6 +2,10 @@ import React, {useState, useEffect, useContext} from 'react';
 import {UserContext} from '../../UserContext'
 import { Link } from 'react-router-dom'
 import { API_URL } from '../../constants/constants';
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
 
 //when using a functional component we need to manually pass down the props to that component
 
@@ -44,22 +48,15 @@ const ReelCard = (props)=> {
   }, [setUser])
 
   return ( 
-    <div className='reel-card'>
-      <div>
-       <button className='reel-card-title'>
-        <Link  onClick={setReelId} to={`/reels/${props.reel_id}`}>
-          { props.reelTitle } 
-        </Link>
-        </button> 
-      </div>
-        {image 
-          ? (<img src={image} alt='no movies yet' />)
-          : (
-          <div className='poster-standin'>
-          </div>
-          )
-        }
-    </div>
+    
+      <Link onClick={setReelId} to={`/reels/${props.reel_id}`}>
+        <Card className='reel-card'>
+          <CardBody>
+            <CardTitle style={{justifyContent: 'center', display: 'flex', fontSize: '1.5rem'}}>{props.reelTitle}</CardTitle>
+            <CardImg top width="100%" src={image} alt='card image of poster' />
+          </CardBody>
+        </Card>
+      </Link> 
   )
 };
 
