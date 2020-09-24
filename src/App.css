@@ -3,6 +3,7 @@
 
 #root {
   background-color: #fcf8f8;
+  min-height: 100vh;
 }
 
 a {
@@ -31,7 +32,6 @@ a:visited {
   display:flex;
   justify-content: space-evenly;
   width: 90vw;
-  margin-bottom: 50px;
   flex-wrap: wrap;
 }
 .my-reels-container {
@@ -131,17 +131,6 @@ a:visited {
   flex-direction: column-reverse;
 } */
 
-.login-container {
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  margin-top: 50px;
-}  
-.login-form {
-  display: flex;
-  flex-direction: column;
-  margin: 5px 80px;
-}
 .form-group {
   font-size: 1.5rem;
   display: flex;
@@ -167,6 +156,24 @@ a:visited {
   flex-direction: column-reverse;
   text-align: center;
 }
+.login-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  margin-top: 50px;
+}  
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 80px;
+}
+.login-form .form-group {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  width: 350px;
+  margin: 5px 0;
+}
 .login-button-container {
   width: 300px;
   padding-top: 13px;
@@ -186,6 +193,7 @@ a:visited {
   height: 30px;
   border-radius: 8px;
 }
+
 .delete-reel-button {
   font-size: 1.5rem;
   width: 30px;
@@ -199,13 +207,13 @@ a:visited {
 .reel-card {
   display: flex;
   flex-direction: column;
-  width: 200px;
-  height: 325px; 
+  width: 230px;
+  height: 370px; 
   font-family: 'Roboto', sans-serif;
   font-size: 2rem;
   font-weight: 800;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 20px;
   overflow: hidden;
   box-shadow: 1px 2px rgba(0, 0, 5, 0.3);
   transition: all .3s ease-in-out;
@@ -271,6 +279,9 @@ a:visited {
   }
   .top-of-reels-info {
     display: none;
+  }
+  #login {
+    transform: scale(.7);
   }
 }
 .hidden {
