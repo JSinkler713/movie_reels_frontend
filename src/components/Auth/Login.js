@@ -94,7 +94,7 @@ const Login = (props)=>{
             </button>
           </div>
         )}
-        <section id="login" className="col-md-6 offset-md-3">
+        <section id="login">
           <form  className="login-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="email" className='email-login'>Email </label>
