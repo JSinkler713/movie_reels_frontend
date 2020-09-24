@@ -287,3 +287,7 @@ a:visited {
 .hidden {
   display: none;
 }
+.red {
+  color: red;
+  border: 1px solid red;
+}

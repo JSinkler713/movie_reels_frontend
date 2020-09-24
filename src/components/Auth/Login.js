@@ -12,7 +12,9 @@ const Login = (props)=>{
   const [user, setUser] = useContext(UserContext)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState(null)
+  const [badRequest, setBadRequest] = useState(false)
+
+  const error = !badRequest ? '' : 'red'
 
   useEffect(()=> {setUser({
       uid: '',
@@ -25,6 +27,7 @@ const Login = (props)=>{
     })
   }, [])
 
+  
   const handleChange = (event) => {
     if (event.target.name == 'password'){
       setPassword(event.target.value)
@@ -57,6 +60,9 @@ const Login = (props)=>{
     })
       .then(res=> res.json())
       .then(data=> {
+        if (data.status != 200) {
+          setBadRequest(true)
+        } else {
         console.log("Success from Auth/login", data);
         //set user in context and in localstorage
         localStorage.setItem('uid', data.signedJwt);
@@ -71,14 +77,16 @@ const Login = (props)=>{
           email: data.email 
         })
         // with useHistory hook
-        history.push('/reels')
-        //props.setCurrentUser(data);
-        // sends user to reels page
-       // props.value.history.push('/reels');
+        if (data.signedJwt) {
+          history.push('/reels')
+        }
+        }
       })
       .catch(err => {
       //  this.setState({error: err.message })
-        setError(err.message)
+      //        setError(err.message)
+      console.log(err.message)
+      setBadRequest(true)
       });     
 
   };
@@ -86,26 +94,18 @@ const Login = (props)=>{
   //render() {
     return (
       <div className="login-container">
-        {error && (
-          <div className="alert alert-danger alert-dismissible fade show" style={{width: '100%'}} role="alert">
-            {error}
-            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        )}
         <section id="login">
           <form  className="login-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="email" className='email-login'>Email </label>
-              <input type="email" className='login-input' id="email" name="email" value={email} onChange={handleChange} />
+              <input type="email" className={badRequest?'login-input red':'login-input'} id="email" name="email" value={email} onChange={handleChange} />
             </div>
             <div className="form-group">
-              <label htmlFor="email" className='password-login'>Password </label>
-              <input type="password" id="password" className='login-input' name="password" value={password} onChange={handleChange} />
+              <label htmlFor="email" className='password-login error'>Password </label>
+              <input type="password" id="password" className={badRequest?'login-input red':'login-input'} name="password" value={password} onChange={handleChange} />
             </div>
             <div className="login-button-container">
-                <button type="submit" className="login-button">Login</button>
+                <button type="submit" className="login-button error">Login</button>
             </div>
           </form>
         </section>
