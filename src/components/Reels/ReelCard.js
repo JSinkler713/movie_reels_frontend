@@ -13,7 +13,9 @@ import {
 const ReelCard = (props)=> {
   const [movies, setMovies] = useState([])
   const [image, setImage] = useState('')
+  const [longTitle, setLongTitle] = useState(false)
   const [user, setUser] = useContext(UserContext)
+
 
   const setReelId =()=> {
     setUser({
@@ -45,6 +47,10 @@ const ReelCard = (props)=> {
       .catch(err => {
         console.log(err)
       }); 
+      console.log(props.reelTitle.length)
+      if (props.reelTitle.length > 18) {
+        setLongTitle(true)
+      }
   }, [setUser])
 
   return ( 
@@ -52,7 +58,10 @@ const ReelCard = (props)=> {
       <Link onClick={setReelId} to={`/reels/${props.reel_id}`}>
         <Card className='reel-card'>
           <CardBody>
-            <CardTitle style={{justifyContent: 'center', display: 'flex', fontSize: '1.5rem'}}>{props.reelTitle}</CardTitle>
+            {longTitle
+            ? <CardTitle style={{justifyContent: 'center', display: 'flex', fontSize: '1rem'}}>{props.reelTitle}</CardTitle>
+            : <CardTitle style={{justifyContent: 'center', display: 'flex', fontSize: '1.25rem'}}>{props.reelTitle}</CardTitle>
+            }
             <CardImg top width="100%" src={image} alt='card image of poster' />
           </CardBody>
         </Card>
